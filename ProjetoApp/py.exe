@@ -1,0 +1,31 @@
+import time
+import os
+class Cronometro:
+
+    def __init__(self, horas=0, minutos=0, segundos=0):
+        self.horas = horas
+        self.minutos = minutos
+        self.segundos = segundos
+
+    def __repr__(self):
+        return f'{self.horas:02d}:{self.minutos:02d}:{self.segundos:02d}'
+    
+    def incrementar(self):
+        self.segundos += 1
+        if self.segundos == 60:
+            self.segundos = 0
+            self.minutos += 1
+        if self.minutos == 60:
+            self.minutos = 0
+            self.horas += 1
+        if self.horas == 24:
+            self.horas = 0
+    
+    def iniciar(self):
+        while True:
+            os.system('cls')
+            print(self)
+            self.incrementar()
+            time.sleep(1)
+cronometro1 = Cronometro()
+cronometro1.iniciar()
